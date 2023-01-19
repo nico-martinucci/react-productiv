@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
+import TodoForm from "./TodoForm";
 
 /** App for managing a todo list.
  *
@@ -15,18 +16,28 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp() {
+function TodoApp({ initialTodos }) {
+  const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
   function create(newTodo) {
+    setTodos(curr => [...curr, {
+      ...newTodo,
+      id: uuid()
+    }])
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
+    setTodos(curr => curr.map(t => {
+      if (t.id === updatedTodo.id) return updatedTodo;
+      return t;
+    }))
   }
 
   /** delete a todo by id */
   function remove(id) {
+    setTodos(curr => curr.filter(t => t.id !== id));
   }
 
   return (
@@ -34,20 +45,21 @@ function TodoApp() {
         <div className="row">
 
           <div className="col-md-6">
-            <EditableTodoList /> OR
-            <span className="text-muted">You have no todos.</span>
+            {todos.length 
+              ? <EditableTodoList todos={todos} 
+                    updated={update} remove={remove}/> 
+              : <span className="text-muted">You have no todos.</span>}
           </div>
 
           <div className="col-md-6">
-            (if no top todo, omit this whole section)
-            <section className="mb-4">
+            {todos.length && <section className="mb-4">
               <h3>Top Todo</h3>
               <TopTodo />
-            </section>
+            </section>}
 
             <section>
               <h3 className="mb-3">Add Nü</h3>
-              FIXME
+              <TodoForm create={create}/>
             </section>
           </div>
 
