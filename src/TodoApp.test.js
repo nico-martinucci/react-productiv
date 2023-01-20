@@ -36,6 +36,12 @@ describe("main TodoApp component", function () {
     expect(screen.getByText("Add Nü")).toBeTruthy();
   });
 
+  it("todo list shows no todo message if no todos", function () {
+    render(<TodoApp />);
+    expect(screen.getByText("You have no todos.")).toBeTruthy();
+    expect(screen.getByText("No top todo!")).toBeTruthy();
+  });
+
 
 
   // it("rendered quotes app", function () {

@@ -1,9 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import TodoApp from "./TodoApp";
 import { screen } from '@testing-library/dom';
 import TodoForm from "./TodoForm";
-import EditableTodoList from "./EditableTodoList";
+
 
 const todo =
 {
@@ -11,28 +10,30 @@ const todo =
   title: "Code!",
   description: "Write some code",
   priority: 2,
-}
-  ;
+};
 
-describe("main TodoApp component", function () {
-  it("rendering TodoForm in edit context without crashing", function () {
+describe("TodoForm component", function () {
+  it("rendering without crashing", function () {
     render(<TodoForm initialFormData={todo} handleSave={() => { }} />);
   });
 
-  it("contains expected title", function () {
+  it("rendering in edit context", function () {
     const { container } = render(<TodoForm initialFormData={todo} handleSave={() => { }} />);
-    // expect(screen.getByText("Code!")).toBeTruthy();
-    // expect(screen.getByText("")).toBeTruthy();
-    // expect(screen.getAllByText("(priority: 1)")).toBeTruthy();
-    console.log("console", container.querySelector("#newTodo-title"));
+
     expect(container.querySelector("#newTodo-title").value).toEqual("Code!");
+    expect(container.querySelector("#newTodo-description").value).toEqual("Write some code");
+    expect(container.querySelector("#newTodo-priority").value).toEqual("2");
 
+    expect(container.querySelector(".NewTodoForm-addBtn")).toBeTruthy();
   });
+  
+  it("rendering in new todo context", function () {
+    const { container } = render(<TodoForm handleSave={() => { }} />);
 
+    expect(container.querySelector("#newTodo-title").value).toEqual("");
+    expect(container.querySelector("#newTodo-description").value).toEqual("");
+    expect(container.querySelector("#newTodo-priority").value).toEqual("1");
 
-
-  // it("rendered quotes app", function () {
-  //     const result = render(<App />);
-  //     expect(result.queryByText("Click here for an inspirational quøte!")).toBeInTheDocument();
-  // });
+    expect(container.querySelector(".NewTodoForm-addBtn")).toBeTruthy();
+  });
 });

@@ -1,8 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import TodoApp from "./TodoApp";
 import { screen } from '@testing-library/dom';
-import EditableTodo from "./EditableTodo";
 import EditableTodoList from "./EditableTodoList";
 
 const initialTodos = [
@@ -31,18 +29,11 @@ describe("main TodoApp component", function () {
     render(<EditableTodoList todos={initialTodos} update={() => { }} remove={() => { }} />);
   });
 
-  it("contains expected title", function () {
+  it("contains list of todos", function () {
     const { container } = render(<EditableTodoList todos={initialTodos} update={() => { }} remove={() => { }} />);
     expect(screen.getByText("Code!")).toBeTruthy();
     expect(screen.getByText("Cook something healthy")).toBeTruthy();
     expect(screen.getAllByText("(priority: 1)")).toBeTruthy();
     expect(container.querySelectorAll(".EditableTodo").length).toEqual(3);
   });
-
-
-
-  // it("rendered quotes app", function () {
-  //     const result = render(<App />);
-  //     expect(result.queryByText("Click here for an inspirational quøte!")).toBeInTheDocument();
-  // });
 });
