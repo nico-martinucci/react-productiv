@@ -11,6 +11,12 @@ import React, { useState } from "react";
  */
 
 function TodoForm({ initialFormData, handleSave }) {
+  if (!initialFormData) {
+    initialFormData = {
+      priority: 1
+    }
+  }
+  
   const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
