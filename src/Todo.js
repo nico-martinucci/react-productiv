@@ -9,7 +9,7 @@ import React from "react";
  **/
 
 function Todo({ todo }) {
-  console.log("todo at top of Todo component:", todo)
+
   return (
       <div className="Todo">
         <div><b>{todo.title}</b> <small>(priority: {todo.priority})</small></div>

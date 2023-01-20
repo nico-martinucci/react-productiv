@@ -18,7 +18,7 @@ import TodoForm from "./TodoForm";
 
 function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(initialTodos);
-  console.log("todos-", todos);
+
   /** add a new todo to list */
   function create(newTodo) {
     setTodos(curr => [...curr, {
@@ -45,6 +45,7 @@ function TodoApp({ initialTodos }) {
       <div className="row">
 
         <div className="col-md-6">
+          <h3 className="mb-3">Todos</h3>
           {todos.length
             ? <EditableTodoList todos={todos}
               update={update} remove={remove} />
