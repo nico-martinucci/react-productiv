@@ -55,7 +55,7 @@ function TodoApp({ initialTodos }) {
         <div className="col-md-6">
           {todos.length && <section className="mb-4">
             <h3>Top Todo</h3>
-            <TopTodo todos={todos}/>
+            <TopTodo todos={todos} />
           </section>}
 
           <section>
