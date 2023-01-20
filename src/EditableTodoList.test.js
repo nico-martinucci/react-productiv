@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import TodoApp from "./TodoApp";
 import { screen } from '@testing-library/dom';
+import EditableTodo from "./EditableTodo";
+import EditableTodoList from "./EditableTodoList";
 
 const initialTodos = [
   {
@@ -26,14 +28,15 @@ const initialTodos = [
 
 describe("main TodoApp component", function () {
   it("renders without crashing", function () {
-    render(<TodoApp initialTodos={initialTodos} />);
+    render(<EditableTodoList todos={initialTodos} update={() => { }} remove={() => { }} />);
   });
 
   it("contains expected title", function () {
-    render(<TodoApp initialTodos={initialTodos} />);
-    expect(screen.getByText("Todos")).toBeTruthy();
-    expect(screen.getByText("Top Todo")).toBeTruthy();
-    expect(screen.getByText("Add Nü")).toBeTruthy();
+    const { container } = render(<EditableTodoList todos={initialTodos} update={() => { }} remove={() => { }} />);
+    expect(screen.getByText("Code!")).toBeTruthy();
+    expect(screen.getByText("Cook something healthy")).toBeTruthy();
+    expect(screen.getAllByText("(priority: 1)")).toBeTruthy();
+    expect(container.querySelectorAll(".EditableTodo").length).toEqual(3);
   });
 
 
