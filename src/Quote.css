@@ -1,0 +1,19 @@
+.Quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.Quote-text {
+    /* margin-left: auto;
+    margin-right: 0; */
+    width: fit-content;
+    background-color: red;
+}
+
+.Quote-button {
+    /* margin-left: auto;
+    margin-right: 0; */
+    width: fit-content;
+    background-color: red;
+}
