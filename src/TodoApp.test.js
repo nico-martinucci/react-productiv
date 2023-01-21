@@ -58,7 +58,7 @@ describe("main TodoApp component", function () {
     const { debug } = render(<TodoApp initialTodos={[initialTodos[2]]} />);
     fireEvent.change(screen.getByLabelText("Title"), { target: { value: "test-title" } });
     fireEvent.change(screen.getByLabelText("Description"), { target: { value: "test-description" } });
-    fireEvent.input(screen.getByLabelText("Priority:"), { target: { value: 2 } });
+    fireEvent.input(screen.getByLabelText("Priority:") as HTMLSelectElement { target: { value: 2 } });
     console.log("Priority-", screen.getByLabelText("Priority:"));
     fireEvent.click(screen.getByText("Gø!"));
     console.log(debug());
