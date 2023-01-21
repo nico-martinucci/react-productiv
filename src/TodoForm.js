@@ -50,7 +50,7 @@ function TodoForm({ initialFormData = defaultFormInputs, handleSave }) {
           placeholder="Title"
           onChange={handleChange}
           aria-label="Title"
-          value={formData?.title || ""}
+          value={formData.title}
         />
       </div>
 
@@ -62,7 +62,7 @@ function TodoForm({ initialFormData = defaultFormInputs, handleSave }) {
           placeholder="Description"
           onChange={handleChange}
           aria-label="Description"
-          value={formData?.description || ""}
+          value={formData.description}
         />
       </div>
 
@@ -75,7 +75,7 @@ function TodoForm({ initialFormData = defaultFormInputs, handleSave }) {
             name="priority"
             onChange={handleChange}
             className="form-control form-control-sm d-inline-flex"
-            value={formData?.priority || 1}
+            value={formData.priority}
           >
             <option value={1}>Ultra-Über</option>
             <option value={2}>Über</option>

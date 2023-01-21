@@ -19,8 +19,8 @@ describe("Todo component", function () {
   it("check for all todo pieces", function () {
     const { container } = render(<Todo todo={todo} />);
 
-    expect(screen.getByText("Code!")).toBeTruthy();
-    expect(screen.getByText("Write some code")).toBeTruthy();
-    expect(screen.getByText("(priority: 2)")).toBeTruthy();
+    expect(screen.getByText("Code!")).toBeInTheDocument();
+    expect(screen.getByText("Write some code")).toBeInTheDocument();
+    expect(screen.getByText("(priority: 2)")).toBeInTheDocument();
   });
 });
